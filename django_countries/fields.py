@@ -70,6 +70,11 @@ class CountryDescriptor(object):
         return Country(code=instance.__dict__[self.field.name])
 
     def __set__(self, instance, value):
+        # Don't understand now why this force_unicode
+        # It creates some trouble with NoneType
+        # I'll think about this later
+        if value == None:
+            value = ''
         instance.__dict__[self.field.name] = force_unicode(value)
 
 
